@@ -1,0 +1,12 @@
+
+[ 
+{"id":1,   "week":"Monday","morning":"school","afternoon":"4pm library","evening":"book club" },
+{"id":2, "week":"Tuesday","morning":"school","afternoon":"","evening":"crazy math" },
+{"id":3, "week":"Wednesday","morning":"school","afternoon":"4pm libray","evening":"book club" },
+{"id":4, "week":"Thursday","morning":"school","afternoon":"","evening":"reading club" },
+{"id":5, "week":"Friday","morning":"school","afternoon":"4pm libray","evening":"science kids" },
+{"id":6, "week":"Saturday","morning":"play date","afternoon":"4pm~6pm play date","evening":"family fun" },
+{"id":7, "week":"Sunday","morning":"worship","afternoon":"shopping","evening":"play date" }
+]
+
+

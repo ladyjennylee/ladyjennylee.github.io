@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bookApp" ng-controller="bookController">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Jenny Family</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body  >
+	<nav class="nav-bar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<a href="" class="navbar-brand" style="margin:0;padding:0"><img src="img\logo.jpg" style="width:50px;height: 50px"alt=""></a>
+					<button class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+				</div>
+				<div class="collapse navbar-collapse" id="navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="index.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+						<li><a href="information.html"> <span class="glyphicon glyphicon-list"></span> Information</a></li>
+						<li><a href="example.html"> <span class="glyphicon glyphicon-fire"></span> Case</a></li>
+						<li class="active"><a href="book.html"> <span class="glyphicon glyphicon-book"></span> Book</a></li>
+						<li ><a href="about.html"> <span class="glyphicon glyphicon-question-sign"></span> About</a></li>
+					</ul>
+				</div>
+				
+			</div>
+		</nav>	
+	<div class="jumbotron">
+			<div class="container">
+				<hgroup>
+					<h1>
+					Book	
+					</h1>
+					<h4>
+					The world is a book, and those who do not travel read only a page.	
+					</h4>
+				</hgroup>
+			</div>
+	</div>
+	<div class="container"  id="about" >
+		<div class="row" style="margin-left:30px;">
+		    <h1><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Famliy Book Store
+		    </h1>
+		</div>
+		<div class="row" style="margin-left:30px;margin-right:30px" >
+            <div class="form-group  col-lg-6">
+                <input type="text" class="form-control" ng-model="query" placeholder="search books">
+            </div>
+            <div class="form-group" >
+                <table class="table table-bordered table-hover" >
+                    <tr>
+                        <th>title</th>
+                        <th>Author</th>
+                        <th>Discription</th>
+                       <!--<th>Pulish time</th>-->
+                        <th>Genre</th>
+                    </tr>
+                    <tr ng-repeat="book in data| filter:query" ng-click="editBook(book)" >
+                        <td>{{book.title}}</td>
+                        <td>{{book.author}}</td>
+                        <td>{{book.discription}}</td>
+                        <!--<td>{{time}}</td>-->
+                        <td>{{book.genre}}</td>
+                        <!--<td>
+                            <button class="btn btn-primary" ng-click="delete($index)"></button>
+                        </td>-->
+                        
+                    </tr>
+                </table>
+            </div>
+            <!-- Button trigger modal -->
+            <div class="form-group" >
+                <button ng-click="addBook()" class="btn btn-primary btn-lg" >Add new book</button>
+            </div>
+           
+           
+		    
+		</div>
+		
+		
+		
+	</div>
+	        <div>
+                <my-modal control='ctrl1' data="data"></my-modal>
+            </div>
+            <div>
+                <edit-modal control='ctrl2' book="book" ></edit-modal>
+            </div>
+	<footer class="footer">
+		<div class="container">
+			<p>Designed and built with all the love in the Chen Family</p>
+			<p>© 2015-2020, Chen Family</p>
+		</div>
+	</footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+     <script src="framework/angular-1.3.0.14/angular.js"></script>
+     <script src="framework/angular-1.3.0.14/angular-route.js"></script>
+     <script type="text/javascript" src="https://rawgit.com/betsol/angular-input-date/master/src/angular-input-date.js"></script>
+     <script src="directive.js"></script>
+    
+    <script>
+    var bookApp=angular.module("bookApp", ['ngInputDate','bookDirectives'
+                                           ]);
+   
+       
+        bookApp.controller("bookController",['$scope',function($scope){
+            $scope.data=[
+                {"title":"aa1","author":"bb1","discription":"cc1","genre":"fiction"},
+                {"title":"aa2","author":"bb2","discription":"cc2","genre":"non_fiction"},
+                {"title":"aa3","author":"bb3","discription":"cc3","genre":"comic"},
+                {"title":"aa1","author":"bb1","discription":"cc1","genre":"	Biography"},
+                {"title":"aa2","author":"bb2","discription":"cc2","genre":"picture"},
+                {"title":"aa3","author":"bb3","discription":"cc3","genre":"Poetry"},
+                {"title":"aa1","author":"bb1","discription":"cc1","genre":"Folktales"},
+                {"title":"aa2","author":"bb2","discription":"cc2","genre":"fiction"},
+                {"title":"aa3","author":"bb3","discription":"cc3","genre":"fiction"},
+                {"title":"aa1","author":"bb1","discription":"cc1","genre":"fiction"},
+                {"title":"aa2","author":"bb2","discription":"cc2","genre":"fiction"},
+                {"title":"aa3","author":"bb3","discription":"cc3","genre":"fiction"}
+            ];
+            $scope.time=new Date($scope.data.publish_time);
+           /**/ $scope.addBook=function(){
+                $scope.ctrl1.showModal();
+            }
+            $scope.delete=function(x){
+                $scope.data.splice(x,1);
+            }
+            $scope.editBook=function(b){
+                $scope.ctrl2.showModal();
+                $scope.book=b;
+                console.log($scope.data[$scope.book]);
+                
+            }
+        }]);
+        
+      
+    </script>
+    <?php exit; ?>
+  </body>
+</body>
+</html>
